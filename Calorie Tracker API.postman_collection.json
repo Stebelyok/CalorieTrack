@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "26bfac32-1f26-4fca-9705-de0f0179c3c5",
+		"name": "Calorie Tracker API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43375031"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Иван\",\n  \"email\": \"Ivan@gmail.com\",\n  \"age\": 25,\n  \"genderType\": \"MALE\",\n  \"goalType\": \"WEIGHT_LOSS\",\n  \"weight\": 75.0,\n  \"height\": 180.0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Dish",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Овсянка\",\n  \"caloriePerServing\": 200,\n  \"proteins\": 6.5,\n  \"fats\": 3.0,\n  \"carbohydrates\": 28.0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/{{userId}}/dishes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"{{userId}}",
+						"dishes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Meal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"mealType\": \"BREAKFAST\",\n  \"date\": \"2025-03-24T08:00:00\",\n  \"dishes\": [\n    {\n      \"dishId\": 1\n    },\n    {\n      \"createDishDto\": {\n        \"name\": \"Макароны\",\n        \"caloriePerServing\": 120,\n        \"proteins\": 4,\n        \"fats\": 0.9,\n        \"carbohydrates\": 25.5\n      }\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/{{userId}}/meals",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"{{userId}}",
+						"meals"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Daily Calorie Report",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/{{userId}}/reports/daily-calories?date={{date}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"{{userId}}",
+						"reports",
+						"daily-calories"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "{{date}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Meal History",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/{{userId}}/reports/meal-history?start={{startDate}}&end={{endDate}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"{{userId}}",
+						"reports",
+						"meal-history"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "{{startDate}}"
+						},
+						{
+							"key": "end",
+							"value": "{{endDate}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Calorie Limit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/{{userId}}/reports/calorie-limit?date={{date}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"{{userId}}",
+						"reports",
+						"calorie-limit"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "{{date}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

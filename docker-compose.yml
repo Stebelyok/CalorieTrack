@@ -1,0 +1,26 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+    networks:
+      - calorietrack-network
+  db:
+    image: postgres:17.2
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: calorietrackdb
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - calorietrack-network
+networks:
+  calorietrack-network:
+    driver: bridge
+volumes:
+  db-data:
